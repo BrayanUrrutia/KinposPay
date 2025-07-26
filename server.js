@@ -3,7 +3,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
-const PORT = 3000;
+
+// ✅ Usa el puerto que asigna Railway
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,16 +33,15 @@ app.all('/payment/callback/KinposPay', (req, res) => {
   console.log("Callback recibido Exitosamente");
   console.log(JSON.stringify(callbackData, null, 2));
 
-res.send(`
-  <html>
-    <head><title>Callback KinposPay</title></head>
-    <body style="font-family:sans-serif;padding:20px;">
-      <h2>Callback recibido exitosamente</h2>
-      <pre>${JSON.stringify(callbackData, null, 2)}</pre>
-    </body>
-  </html>
-`);
-
+  res.send(`
+    <html>
+      <head><title>Callback KinposPay</title></head>
+      <body style="font-family:sans-serif;padding:20px;">
+        <h2>Callback recibido exitosamente</h2>
+        <pre>${JSON.stringify(callbackData, null, 2)}</pre>
+      </body>
+    </html>
+  `);
 });
 
 // Iniciar el servidor
