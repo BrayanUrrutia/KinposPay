@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KinPOS Pay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(145deg, #323289, #262673);
+      background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+      color: #333;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    .main-form {
+      flex: 2;
+      min-width: 300px;
+    }
+
+    .sidebar {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .card {
+      background: rgba(255, 254, 254, 0.162);
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      font-weight: 70px;
+      color: #000000;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .logo {
+      display: block;
+      margin: 0 auto 20px;
+      max-width: 250px;
+    }
+
+    .section-title {
+      font-weight: 500;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: #000000b8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #620303c3;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+      background-color: #fefefd00;
+    }
+
+.form-button {
+  text-align: right;
+  margin-top: -21%;
+  margin-bottom: 10%;
+  margin-right: 16%;
+}
+
+input[type="submit"] {
+  width: 180px;
+  padding: 14px;
+  background-color: #000100c7;
+  color: white;
+  border: none;
+  font-size: 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #047a2da2;
+}
+
+    .form-columns {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .left-column,
+    .right-column {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    @media screen and (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .main-form, .sidebar {
+        width: 100%;
+      }
+
+      .form-columns {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main-form">
+      <div class="card">
+        <img src="https://moscu.kinposlabs.com:7022/Templates/themes/default/images/Logo/logo.png" alt="Logo KinPOS" class="logo">
+        <h2>Kinpos Pay</h2>
+        <p style="text-align:center; color: #4a1009a4; font-size: 23px;">Formulario de prueba de llamada de pago</p>
+      </div>
+
+      <form method="POST" action="https://apololab.kinposlabs.com/PayGateway/Payment/PaymentRedirect">
+        <div class="form-columns">
+          <div class="left-column">
+            <div class="card">
+              <div class="section-title">Configuración de Terminal</div>
+              <div class="grid">
+                <div><label>terminal_Id *</label><input type="text" name="terminal_Id" value="51177876" required></div>
+                <div><label>merchant_Id *</label><input type="text" name="merchant_Id" value="51618777596" required></div>
+                <div><label>user_name *</label><input type="text" name="user_name" value="AirPak_API" required></div>
+                <div><label>security_stamp *</label><input type="text" name="security_stamp" value="83AXP3gmFjup" required></div>
+                <div><label>password *</label><input type="text" name="password" value="36901DAA575B89FE54B57D86BB039BE88528C490004808A2DA37DC095288394E" required></div>
+                <div><label>message_signature *</label><input type="text" name="message_signature" value="D18569B1F86D741C65EF16C5D610DBD9ABB8F1718379583A6ACD2FA9D289DAB8" required></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="section-title">Datos del Pagador</div>
+              <div class="grid">
+                <div><label>payer_firstname *</label><input type="text" name="payer_firstname" value="Brayan" required></div>
+                <div><label>payer_lastname *</label><input type="text" name="payer_lastname" value="Urrutia" required></div>
+                <div><label>payer_email *</label><input type="email" name="payer_email" value="burrutia@kinpos.com" required></div>
+                <div><label>payer_id</label><input type="text" name="payer_id" value="12345"></div>
+                <div><label>payer_mobile</label><input type="text" name="payer_mobile" value="73373832"></div>
+                <div><label>payer_region</label><input type="text" name="payer_region" value="El Salvador"></div>
+                <div><label>payer_city</label><input type="text" name="payer_city" value="San Salvador"></div>
+                <div><label>payer_zip</label><input type="text" name="payer_zip" value="01122"></div>
+                <div><label>payer_address</label><input type="text" name="payer_address" value="Calle Principal 12"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="right-column">
+            <div class="card">
+              <div class="section-title">Detalles de Transacción</div>
+              <div class="grid">
+                <div><label>description *</label><input type="text" name="description" value="Pago de Mensualidad" required></div>
+                <div><label>ref1 *</label><input type="text" name="ref1" value="QA01" required></div>
+                <div><label>amount *</label><input type="text" name="amount" value="200" required></div>
+                <div><label>total_tax *</label><input type="text" name="total_tax" value="0" required></div>
+                <div><label>currency_code *</label><input type="text" name="currency_code" value="USD" required></div>
+                <div><label>type_request *</label><input type="text" name="type_request" value="Production" required></div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="section-title">Datos Adicionales</div>
+              <div class="grid">
+                <div><label>country_code *</label><input type="text" name="country_code" value="503" required></div>
+                <div><label>date *</label><input type="text" name="date" value="25072025" required></div>
+                <div><label>time *</label><input type="text" name="time" value="210000" required></div>
+                <div><label>response_Url *</label><input type="text" name="response_Url" value="https://kinpospay-production.up.railway.app/payment/callback/KinposPay" required></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-button">
+  <input type="submit" value="Enviar Petición">
+</div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
